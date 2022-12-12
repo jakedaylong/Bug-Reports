@@ -1,8 +1,6 @@
 /.ipynb_checkpoints
 /Archive
-operation script/bug_list.csv
-operation script/Count_By_Priority.png
-operation script/Count_By_Status.png
-operation script/count_of_bugs_creation_date.png
-operation script/My_Requests_07_12_2022_14_50.csv
+*.csv
+*.xlsx
+
 operation script/__pycache__/df_compare.cpython-310.pyc
