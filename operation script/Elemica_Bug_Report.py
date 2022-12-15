@@ -12,10 +12,13 @@ def main():
     prev_export = fi.load_prev_export(file_exists)
     prev_export = dc.update_prev_export(prev_export, bug_df)
     bug_delta = dc.compare_delta(bug_df, prev_export)
+    bug_df_cumsum_res = fi.create_bug_df_cumsum_res(bug_df)
+    bug_df_cumsum = fi.create_bug_df_cumsum(bug_df)
     dc.old_new_concat(bug_delta, prev_export)
     bc.count_by_priority(bug_df)
     bc.count_by_status(bug_df)
     bc.count_of_bugs_creation_date(bug_df)
+    bc.cumsum_total_res(bug_df_cumsum, bug_df_cumsum_res)
 
 if __name__ == "__main__":
     main()
