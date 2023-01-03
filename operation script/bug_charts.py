@@ -58,4 +58,4 @@ def count_of_bugs_resolved(bug_df):
     palette = {'Customer Action':'tab:red', 'In Progress':'tab:orange', 'Resolved':'tab:green', 'in Discussion':'tab:blue'}
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Created', hue='Status', multiple='stack', palette=palette)
-    plt.savefig(fname='count_of_bugs_creation_date')
+    plt.savefig(fname='count_of_bugs_resolved')
