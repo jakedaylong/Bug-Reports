@@ -20,6 +20,7 @@ def main():
     bc.count_by_priority(bug_df)
     bc.count_by_status(bug_df)
     bc.count_of_bugs_creation_date(bug_df)
+    bc.count_of_bugs_resolved(bug_df)
     bc.cumsum_total_res(bug_df_cumsum, bug_df_cumsum_res)
 
 if __name__ == "__main__":

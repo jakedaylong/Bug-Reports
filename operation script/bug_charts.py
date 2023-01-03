@@ -50,3 +50,12 @@ def cumsum_total_res(bug_df_cumsum, bug_df_cumsum_res):
     Html_file= open("Sum_total_vs_resolved.html","w")
     Html_file.write(html_str)
     Html_file.close()
+
+def count_of_bugs_resolved(bug_df):
+    '''Creates histplot for count of bugs by creations date from bug_df dataframe
+    and colored by bug priority. (includes resolved bugs)'''
+    fig, ax = plt.subplots(figsize=(12,8))
+    palette = {'Customer Action':'tab:red', 'In Progress':'tab:orange', 'Resolved':'tab:green', 'in Discussion':'tab:blue'}
+    sns.set_context('notebook')
+    sns.histplot(data=bug_df, x='Created', hue='Status', multiple='stack', palette=palette)
+    plt.savefig(fname='count_of_bugs_creation_date')
