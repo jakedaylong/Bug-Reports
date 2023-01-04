@@ -57,5 +57,5 @@ def count_of_bugs_resolved(bug_df):
     fig, ax = plt.subplots(figsize=(12,8))
     palette = {'Customer Action':'tab:red', 'In Progress':'tab:orange', 'Resolved':'tab:green', 'in Discussion':'tab:blue'}
     sns.set_context('notebook')
-    sns.histplot(data=bug_df, x='Created', hue='Status', multiple='stack', palette=palette)
+    sns.histplot(data=bug_df, x='Created', hue='Status', multiple='stack')
     plt.savefig(fname='count_of_bugs_resolved')
