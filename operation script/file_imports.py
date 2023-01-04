@@ -9,11 +9,11 @@ def import_new(csv):
     csv_import = csv_import.sort_values(by=('Priority'), ascending=True)
     return csv_import
 
-def load_prev_export(file_exists):
+def load_prev_export(file_exists, bug_dir):
     '''loads previous export. if known previous file exists, it will use that, else it will prompt
     user to additional file name for import.'''
     if file_exists is True:
-        prev_export = pd.read_csv('bug_list.csv', index_col='Key', parse_dates=['Created', 'Updated'])
+        prev_export = pd.read_csv(bug_dir + 'bug_list.csv', index_col='Key', parse_dates=['Created', 'Updated'])
         prev_export['Created'] = prev_export['Created'].dt.date
         prev_export['Updated'] = prev_export['Updated'].dt.date
     else:
