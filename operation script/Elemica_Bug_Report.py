@@ -1,6 +1,7 @@
 import bug_charts as bc
 import file_imports as fi
 import df_compare as dc
+import diag_script as diag
 from os.path import exists
 
 def main():
@@ -11,6 +12,7 @@ def main():
     bug_unresolved = fi.import_new(csv_unres)
     bug_resolved = fi.import_new(csv_res)
     bug_df = dc.unresolved_resolved_concat(bug_unresolved, bug_resolved)
+    #diag.to_csv_df(bug_df)
     prev_export = fi.load_prev_export(file_exists)
     prev_export = dc.update_prev_export(prev_export, bug_df)
     bug_delta = dc.compare_delta(bug_df, prev_export)
