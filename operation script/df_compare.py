@@ -1,3 +1,4 @@
+'''comparision and update scripting for bug_list.csv'''
 import pandas as pd
 
 def compare_delta(bug_df, prev_export):
