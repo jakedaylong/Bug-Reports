@@ -1,3 +1,4 @@
+#pylint: disable=line-too-long, unspecified-encoding
 '''Charting script'''
 import os
 import matplotlib.pyplot as plt
@@ -5,6 +6,7 @@ import seaborn as sns
 import mpld3
 
 def get_dir():
+    '''retreiving directories for file saving'''
     script_dir = os.path.dirname(__file__)
     png_dir = os.path.join(script_dir, 'Charts_PNG/')
     html_dir = os.path.join(script_dir, 'Charts_HTML/')
@@ -19,7 +21,7 @@ def count_of_bugs_creation_date(bug_df, png_dir, html_dir):
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Created', hue='Priority', multiple='stack', palette=palette)
     plt.savefig(png_dir + 'Count_of_Bugs_Creation_Date.png')
-    
+    #html chart generation
     html_str = mpld3.fig_to_html(fig)
     html_file = open(html_dir + "Count_by_Priority.html","w")
     html_file.write(html_str)
@@ -33,7 +35,7 @@ def count_by_priority(bug_df, png_dir, html_dir):
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Priority', hue='Status', multiple='stack', palette=palette)
     plt.savefig(png_dir + 'Count_by_Priority.png')
-
+    #html chart generation
     html_str = mpld3.fig_to_html(fig)
     html_file = open(html_dir + "Count_by_Priority.html","w")
     html_file.write(html_str)
@@ -47,7 +49,7 @@ def count_by_status(bug_df, png_dir, html_dir):
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Status', hue='Priority', multiple='stack', palette=palette)
     plt.savefig(png_dir + 'Count_by_Status.png')
-    
+    #html chart generation
     html_str = mpld3.fig_to_html(fig)
     html_file = open(html_dir + "Count_by_Status.html","w")
     html_file.write(html_str)
@@ -60,7 +62,7 @@ def cumsum_total_res(bug_df_cumsum, bug_df_cumsum_res, png_dir, html_dir):
     sns.lineplot(data=bug_df_cumsum, x='Created', y='Type', marker='o', legend=True, label='Cumulative Sum')
     sns.lineplot(data=bug_df_cumsum_res, x='Updated', y='Res_Sum', marker='o', legend=True, label='Resolution Cumulative Sum')
     plt.savefig(png_dir + 'Cumsum_Total_vs_Resolved.png')
-
+    #html chart generation
     html_str = mpld3.fig_to_html(fig)
     html_file = open(html_dir + "Sum_Total_vs_Resolved.html","w")
     html_file.write(html_str)
@@ -74,7 +76,7 @@ def count_of_bugs_resolved(bug_df, png_dir, html_dir):
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Created', hue='Status', multiple='stack')
     plt.savefig(png_dir + 'Count_of_Bugs_Resolved.png')
-
+    #html chart generation
     html_str = mpld3.fig_to_html(fig)
     html_file = open(html_dir + "Count_of_Bugs_Resolved.html","w")
     html_file.write(html_str)

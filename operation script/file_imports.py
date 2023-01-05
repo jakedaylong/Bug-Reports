@@ -1,3 +1,4 @@
+#pylint: disable=line-too-long
 '''Scripting for file imports'''
 import pandas as pd
 
