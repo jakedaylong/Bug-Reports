@@ -1,8 +1,8 @@
 '''Charting script'''
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 import mpld3
-import os
 
 def get_dir():
     script_dir = os.path.dirname(__file__)
