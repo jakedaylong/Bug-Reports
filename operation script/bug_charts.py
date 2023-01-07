@@ -17,7 +17,7 @@ def count_of_bugs_creation_date(bug_df, png_dir, html_dir):
     '''Creates histplot for count of bugs by creations date from bug_df dataframe
     and colored by bug priority. (includes resolved bugs)'''
     fig = plt.subplots(figsize=(12,8))
-    palette = {'Blocker':'tab:red', 'Major':'tab:orange', 'Minor':'tab:green', 'Trivial':'tab:blue'}
+    palette = {'Blocker':'tab:red', 'Major':'tab:orange', 'Minor':'tab:green', 'Trivial':'tab:blue', 'Non Production':'tab:purple'}
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Created', hue='Priority', multiple='stack', palette=palette)
     plt.savefig(png_dir + 'Count_of_Bugs_Creation_Date.png')
@@ -45,7 +45,7 @@ def count_by_status(bug_df, png_dir, html_dir):
     '''count of bugs by current status. colored by priotity. (includes resolved bugs)'''
     bug_df = bug_df.sort_values(by='Priority', ascending=True)
     fig = plt.subplots(figsize=(12,8))
-    palette = {'Blocker':'tab:red', 'Major':'tab:orange', 'Minor':'tab:green', 'Trivial':'tab:blue'}
+    palette = {'Blocker':'tab:red', 'Major':'tab:orange', 'Minor':'tab:green', 'Trivial':'tab:blue', 'Non Production':'tab:purple'}
     sns.set_context('notebook')
     sns.histplot(data=bug_df, x='Status', hue='Priority', multiple='stack', palette=palette)
     plt.savefig(png_dir + 'Count_by_Status.png')
