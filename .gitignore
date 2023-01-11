@@ -2,6 +2,5 @@
 /Archive
 *.csv
 *.xlsx
-.vscode
 __pycache__
 operation script/__pycache__/df_compare.cpython-310.pyc
