@@ -2,10 +2,32 @@
 '''Scripting for file imports'''
 import pandas as pd
 
+def multi_file_unres(csv_unres_count):
+    '''created to support multiple file upload'''
+    count = 1
+    bug_unresolved = pd.DataFrame()
+    while count <= csv_unres_count:
+        csv_unres = input('Enter file name of unresolved bug file ' + str(count) + ':')
+        unres_df = import_new(csv_unres)
+        bug_unresolved = pd.concat([bug_unresolved, unres_df])
+        count += 1
+    return bug_unresolved
+
+def multi_file_res(csv_res_count):
+    '''created to support multiple file upload'''
+    count = 1
+    bug_resolved = pd.DataFrame()
+    while count <= csv_res_count:
+        csv_res = input('Enter file name of resolved bug file ' + str(count) + ':')
+        res_df = import_new(csv_res)
+        bug_resolved = pd.concat([bug_resolved, res_df])
+        count += 1
+    return bug_resolved
+
 def import_new(csv):
     '''import new csv file into csv_import dataframe based on user input gathered in main().
     dates are parsed into pandas format from csv export.'''
-    csv_import = pd.read_csv(csv, index_col='Key', parse_dates=['Created', 'Updated'])
+    csv_import = pd.read_csv(csv, index_col='Key', parse_dates=['Created', 'Updated'], encoding="cp1252")
     csv_import['Created'] = csv_import['Created'].dt.date
     csv_import['Updated'] = csv_import['Updated'].dt.date
     csv_import = csv_import.sort_values(by=('Priority'), ascending=True)
@@ -38,3 +60,21 @@ def create_bug_df_cumsum(bug_df):
     bug_df_count['Adj_Sum'] = bug_df_count['Type'] - bug_df_count['Resolution']
     bug_df_cumsum = bug_df_count.cumsum()
     return bug_df_cumsum
+
+def counts_greater_than_one_unresolved(csv_unres_count):
+    '''added functionality for the existence of more than one file to upload at a time'''
+    if csv_unres_count > 1:
+        bug_unresolved = multi_file_unres(csv_unres_count)
+    else:
+        csv_unres = input('Enter file name of unresolved bug file:')
+        bug_unresolved = import_new(csv_unres)
+    return bug_unresolved
+
+def counts_greater_than_one_resolved(csv_res_count):
+    '''added functionality for the existence of more than one file to upload at a time'''
+    if csv_res_count > 1:
+        bug_resolved = multi_file_res(csv_res_count)
+    else:
+        csv_res = input('Enter file name of resolved bug file:')
+        bug_resolved = import_new(csv_res)
+    return bug_resolved
